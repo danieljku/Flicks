@@ -34,10 +34,11 @@ Please list two areas of the assignment you'd like to **discuss further with you
 2. Search bar functionality and how to implement it in different situations. Such as grabbing the information from the table view to re sort it upon searching.
 
 ## Video Walkthrough 
-
+http://i.imgur.com/SvWrPtA.gif
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/SvWrPtA.gif' title='Walkthrough of Flicks' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/uZ6VQ51.gif' title='Flicks Video Walkthrough' width='' alt='Video Walkthrough' />
+
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

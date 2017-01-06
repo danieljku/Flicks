@@ -1,6 +1,6 @@
-# Project 1 - Flicker
+# Project 1 - Flicks
 
-Flicker is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+Flicks is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
 Time spent: 4 hours spent in total
 
@@ -37,13 +37,15 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/pEknqOU.gifv' title='Walkthrough of Flicker' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/SvWrPtA.gif' title='Walkthrough of Flicks' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+- I had difficulty implementing the search bar. I've always had trouble using a search bar when implementing it was API's since it requires grabbing the data and then storing it in the tableview.
 
 ## License
 

@@ -13,6 +13,8 @@
 		1227BC301E1DFA1100CB4324 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1227BC2E1E1DFA1100CB4324 /* LaunchScreen.storyboard */; };
 		1227BC3B1E1E05F200CB4324 /* MoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1227BC3A1E1E05F200CB4324 /* MoviesTableViewCell.swift */; };
 		12AFA2DB1E1E156300636C34 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AFA2DA1E1E156300636C34 /* MoviesViewController.swift */; };
+		12C1582E1E1F902200149F45 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C1582D1E1F902200149F45 /* SettingsViewController.swift */; };
+		12C158321E1F9B3F00149F45 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C158311E1F9B3F00149F45 /* Reachability.swift */; };
 		CC35786A562A38714586978A /* Pods_Flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1614E54997723DBAA009F4D4 /* Pods_Flicks.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		1227BC311E1DFA1100CB4324 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1227BC3A1E1E05F200CB4324 /* MoviesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableViewCell.swift; sourceTree = "<group>"; };
 		12AFA2DA1E1E156300636C34 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
+		12C1582D1E1F902200149F45 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		12C158311E1F9B3F00149F45 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		1614E54997723DBAA009F4D4 /* Pods_Flicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AEA7F2A45B980A84B4578D6 /* Pods-Flicks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.release.xcconfig"; sourceTree = "<group>"; };
 		7F8A3D52EAAC7803F5522F88 /* Pods-Flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flicks/Pods-Flicks.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +67,7 @@
 		1227BC241E1DFA1100CB4324 /* Flicks */ = {
 			isa = PBXGroup;
 			children = (
+				12C158331E1F9B4A00149F45 /* Helper */,
 				1227BC3C1E1E060000CB4324 /* Controllers */,
 				1227BC391E1E05CF00CB4324 /* Views */,
 				1227BC251E1DFA1100CB4324 /* AppDelegate.swift */,
@@ -86,8 +91,17 @@
 			isa = PBXGroup;
 			children = (
 				12AFA2DA1E1E156300636C34 /* MoviesViewController.swift */,
+				12C1582D1E1F902200149F45 /* SettingsViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		12C158331E1F9B4A00149F45 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				12C158311E1F9B3F00149F45 /* Reachability.swift */,
+			);
+			name = Helper;
 			sourceTree = "<group>";
 		};
 		FEB5CD6E51902DCFB3601CBE /* Pods */ = {
@@ -234,6 +248,8 @@
 				1227BC3B1E1E05F200CB4324 /* MoviesTableViewCell.swift in Sources */,
 				1227BC261E1DFA1100CB4324 /* AppDelegate.swift in Sources */,
 				12AFA2DB1E1E156300636C34 /* MoviesViewController.swift in Sources */,
+				12C158321E1F9B3F00149F45 /* Reachability.swift in Sources */,
+				12C1582E1E1F902200149F45 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +293,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -326,6 +343,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

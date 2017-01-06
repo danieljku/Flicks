@@ -10,21 +10,47 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
+var sortControl = "NowPlaying"
+
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var moviesTableView: UITableView!
+    @IBOutlet weak var flicksNavItem: UINavigationItem!
+    @IBOutlet weak var networkLabel: UILabel!
     var movies: [NSDictionary]?
+    let defaults = UserDefaults.standard
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if Reachability.isConnectedToNetwork() == true{
+            networkLabel.isHidden = true
+        }else{
+            networkLabel.isHidden = false
+        }
+        
+        if let sort = defaults.string(forKey: "sortControl"){
+            sortControl = sort
+        }
+        
+        flicksNavItem.setHidesBackButton(true, animated: true)
+        
         moviesTableView.dataSource = self
         moviesTableView.delegate = self
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
         moviesTableView.insertSubview(refreshControl, at: 0)
         
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
+        var url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")!
+        
+        if sortControl == "Popular"{
+            url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)")!
+        }else if sortControl == "TopRated"{
+            url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=\(apiKey)")!
+        }
+        
         MBProgressHUD.showAdded(to: self.view, animated: true)
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -65,7 +91,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         }
         task.resume()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -85,6 +111,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let movie = movies![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
+        let popularity = String(round((movie["popularity"] as! Double)*100)/100)
+        let voteAvg = String(round((movie["vote_average"] as! Double)*100)/100)
+        let releaseDate = movie["release_date"] as! String
         let posterPath = movie["poster_path"] as! String
 
         let baseURL = "https://image.tmdb.org/t/p/w500"
@@ -93,6 +122,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell.movieTitle.text = title
         cell.overviewLabel.text = overview
+        cell.movieVote.text = voteAvg
+        cell.popularity.text = popularity
+        cell.releaseDate.text = releaseDate
         cell.moviePosterImage.setImageWith(imageURL as! URL)
 
         return cell

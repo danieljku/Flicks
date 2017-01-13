@@ -48,7 +48,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LcK-3t-ryS" id="qyO-Rq-3Kq">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="139"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S4L-Zn-AQK">
@@ -121,7 +121,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Flicks" id="Rsg-VU-18l">
-                        <barButtonItem key="leftBarButtonItem" title="Collection" id="Twx-WC-tWJ">
+                        <barButtonItem key="leftBarButtonItem" image="Collection" id="Twx-WC-tWJ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="tsR-5g-EDQ" kind="push" identifier="Collection" id="Fpv-NV-EaC"/>
                             </connections>
@@ -252,6 +253,9 @@
             <point key="canvasLocation" x="55.500000000000007" y="861.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Collection" width="37" height="37"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

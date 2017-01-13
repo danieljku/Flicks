@@ -25,6 +25,8 @@ class MovieCollectionViewController: UIViewController, UICollectionViewDataSourc
             networkLabel.isHidden = false
         }
 
+        self.navigationController!.navigationBar.tintColor = UIColor.white
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         // Do any additional setup after loading the view.

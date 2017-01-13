@@ -16,7 +16,7 @@ The following **required** functionality is complete:
 The following **optional** features are implemented:
 
 - [X] User sees an error message when there's a networking error.
-- [ ] Movies are displayed using a CollectionView instead of a TableView.
+- [X] Movies are displayed using a CollectionView instead of a TableView.
 - [ ] User can search for a movie.
 - [ ] All images fade in as they are loading.
 - [X] Customize the UI.
@@ -46,6 +46,66 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 Describe any challenges encountered while building the app.
 
 - I had difficulty implementing the search bar. I've always had trouble using a search bar when implementing it was API's since it requires grabbing the data and then storing it in the tableview.
+
+## License
+
+    Copyright [2017] [Daniel Ku]
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+
+
+# Project 2 - Flicks
+
+Flicks is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+
+Time spent: 5 hours spent in total
+
+## User Stories
+
+The following **required** functionality is completed:
+
+- [X] User can view movie details by tapping on a cell.
+- [X] User can select from a tab bar for either **Now Playing** or **Top Rated** movies.
+- [X] Customize the selection effect of the cell.
+
+The following **optional** features are implemented:
+
+- [ ] For the large poster, load the low resolution image first and then switch to the high resolution image when complete.
+- [X] Customize the navigation bar.
+
+The following **additional** features are implemented:
+
+- [X] Modified the table view so that it doesn't show the overview for a cleaner look since the overview can be seen in the detail.
+- [X] Added a popular tab alongside the top rated and now playing tabs.
+- [X] Added an icon for the list view(table view) and collection view
+
+Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
+
+1. There should be a tutorial or mention about how the tab bar image icons will need to be resized to fit properly.
+2. How to show detail controller from the collection view
+
+## Video Walkthrough 
+
+Here's a walkthrough of implemented user stories:
+
+<img src='http://i.imgur.com/SAEAeIj.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+## Notes
+
+Only challenge I faced for part 2 was looking for a way to set the back bar image to the image I wanted and the correct size.
 
 ## License
 

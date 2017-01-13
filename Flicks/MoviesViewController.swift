@@ -21,6 +21,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "List")
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "List")
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         if Reachability.isConnectedToNetwork() == true{
             networkLabel.isHidden = true

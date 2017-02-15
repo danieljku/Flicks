@@ -27,7 +27,6 @@ The following **additional** features are implemented:
 - [X] Remember the sort order the user wanted after app restarts.
 - [X] There is a settings page:
 	- You can change the ordering of the movies by popularity, now playing or top rated.
-    - This was removed and changed using a tab bar.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 

@@ -10,12 +10,25 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet weak var moviesTableView: UITableView!
     @IBOutlet weak var flicksNavItem: UINavigationItem!
     @IBOutlet weak var networkLabel: UILabel!
-    var movies: [NSDictionary]?
+    var movies: [[String: Any]]?{
+        didSet{
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+                self.moviesTableView.reloadData()
+            }
+        }
+    }
     var endpoint = "now_playing"
+    var searchBar = UISearchBar()
+    let refreshControl = UIRefreshControl()
+
+    
+   // var movieDict: [[String: Any]]?
+    var filteredDict: [[String: Any]]?
 
 
     override func viewDidLoad() {
@@ -35,8 +48,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         moviesTableView.dataSource = self
         moviesTableView.delegate = self
+        searchBar.delegate = self
+        self.navigationItem.titleView = searchBar
         
-        let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
         moviesTableView.insertSubview(refreshControl, at: 0)
         
@@ -53,7 +67,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                     
                     print(dataDictionary)
                     
-                    self.movies = dataDictionary["results"] as? [NSDictionary]
+                    self.movies = dataDictionary["results"] as? [[String: Any]]
                     self.moviesTableView.reloadData()
                 }
             }
@@ -62,6 +76,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
 
         // Do any additional setup after loading the view.
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.filteredDict = searchText.isEmpty ? self.movies : self.movies?.filter({ (movie) -> Bool in
+            return (movie["title"] as! String).range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        })
+        self.moviesTableView.reloadData()
     }
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
@@ -75,7 +96,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
                     print(dataDictionary)
                     
-                    self.movies = dataDictionary["results"] as? [NSDictionary]
+                    self.movies = dataDictionary["results"] as! [[String : Any]]?
                     self.moviesTableView.reloadData()
                     refreshControl.endRefreshing()
                 }
@@ -90,10 +111,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let movies = movies{
-            return movies.count
+        if self.searchBar.text!.isEmpty{
+            return movies?.count ?? 0
         }else{
-            return 0
+            return filteredDict?.count ?? 0
         }
     }
     
@@ -102,7 +123,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell.selectionStyle = .none
         
-        let movie = movies![indexPath.row]
+        let movie = self.searchBar.text!.isEmpty ?  movies![indexPath.row] : filteredDict![indexPath.row]
         let title = movie["title"] as! String
         let popularity = String(round((movie["popularity"] as! Double)*100)/100)
         let voteAvg = String(round((movie["vote_average"] as! Double)*100)/100)
@@ -129,7 +150,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             let movie = movies![indexPath!.row]
         
             let detailViewController = segue.destination as! DetailViewController
-            detailViewController.movie = movie
+            detailViewController.movie = movie as NSDictionary!
+        }else if segue.identifier == "Collection"{
+            let destinationVC = segue.destination as! MovieCollectionViewController
+            destinationVC.endpoint = self.endpoint
         }
     }
 }

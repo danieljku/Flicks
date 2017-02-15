@@ -10,12 +10,20 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MovieCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MovieCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var networkLabel: UILabel!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    var movies: [NSDictionary]?
+    var movies: [[String: Any]]?{
+        didSet{
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    var filteredDict: [[String: Any]]?
     var endpoint = "now_playing"
+    var searchBar = UISearchBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +37,8 @@ class MovieCollectionViewController: UIViewController, UICollectionViewDataSourc
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        searchBar.delegate = self
+        self.navigationItem.titleView = searchBar
         // Do any additional setup after loading the view.
         
         flowLayout.minimumLineSpacing = 0
@@ -48,13 +58,20 @@ class MovieCollectionViewController: UIViewController, UICollectionViewDataSourc
                     
                     print(dataDictionary)
                     
-                    self.movies = dataDictionary["results"] as? [NSDictionary]
+                    self.movies = dataDictionary["results"] as! [[String : Any]]?
                     self.collectionView.reloadData()
                 }
             }
         }
         task.resume()
 
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.filteredDict = searchText.isEmpty ? self.movies : self.movies?.filter({ (movie) -> Bool in
+            return (movie["title"] as! String).range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        })
+        self.collectionView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,16 +80,16 @@ class MovieCollectionViewController: UIViewController, UICollectionViewDataSourc
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let movies = movies{
-            return movies.count
+        if self.searchBar.text!.isEmpty{
+            return movies?.count ?? 0
         }else{
-            return 0
+            return filteredDict?.count ?? 0
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! MoviesCollectionViewCell
         
-        let movie = movies![indexPath.row]
+        let movie = self.searchBar.text!.isEmpty ? movies![indexPath.row] : filteredDict![indexPath.row]
         
         let baseURL = "https://image.tmdb.org/t/p/w500"
         if let posterPath = movie["poster_path"] as? String{

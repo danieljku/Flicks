@@ -17,7 +17,7 @@ The following **optional** features are implemented:
 
 - [X] User sees an error message when there's a networking error.
 - [X] Movies are displayed using a CollectionView instead of a TableView.
-- [ ] User can search for a movie.
+- [X] User can search for a movie.
 - [ ] All images fade in as they are loading.
 - [X] Customize the UI.
 
@@ -27,6 +27,7 @@ The following **additional** features are implemented:
 - [X] Remember the sort order the user wanted after app restarts.
 - [X] There is a settings page:
 	- You can change the ordering of the movies by popularity, now playing or top rated.
+    - This was removed and changed using a tab bar.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -36,7 +37,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 ## Video Walkthrough 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/KkP8ZSF.gif' title='Flicks Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/MdGTACa.gif' title='Flicks Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
